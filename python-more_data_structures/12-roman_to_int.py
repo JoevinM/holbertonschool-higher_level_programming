@@ -8,13 +8,10 @@ def roman_to_int(roman_string):
     roman = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
 
     for roman_int in reversed(roman_string):
-        for key, value in roman.items():
-            if roman_int == key:
-                if value < temp:
-                    result -= value
-                    break
-                if value > temp:
-                    result += value
-                    break
-            temp = value
+        value = roman[roman_int]
+        if value < temp:
+            result -= value
+        else:
+            result += value
+        temp = value
     return result
