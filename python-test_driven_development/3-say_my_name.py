@@ -13,7 +13,8 @@ def say_my_name(first_name, last_name=""):
     Checks that first_name and last_name are strings.
     Displays: My name is <first name> <last name>.
     """
-
+    if first_name == "" or first_name is None:
+        raise TypeError("the function need minimum the first_name arg")
     if not isinstance(first_name, str):
         raise TypeError("first_name must be a string")
     if not isinstance(last_name, str):
