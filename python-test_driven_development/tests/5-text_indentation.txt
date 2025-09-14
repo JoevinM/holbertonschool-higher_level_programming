@@ -1,0 +1,47 @@
+    >>> text_indentation = __import__('5-text_indentation').text_indentation
+
+    # 1. Basic sentence with '.', '?', ':'
+    >>> text_indentation("Hello. How are you? I'm fine: thanks.")
+    Hello.
+    <BLANKLINE>
+    How are you?
+    <BLANKLINE>
+    I'm fine:
+    <BLANKLINE>
+    thanks.
+    <BLANKLINE>
+
+    # 2. Multiple punctuation marks together
+    >>> text_indentation("Wait... What? Really?: Yes.")
+    Wait.
+    <BLANKLINE>
+    .
+    <BLANKLINE>
+    .
+    <BLANKLINE>
+    What?
+    <BLANKLINE>
+    Really?
+    <BLANKLINE>
+    :
+    <BLANKLINE>
+    Yes.
+    <BLANKLINE>
+
+    # 3. Leading and trailing spaces after punctuation are removed
+    >>> text_indentation("Hi.   How are you?   Good.")
+    Hi.
+    <BLANKLINE>
+    How are you?
+    <BLANKLINE>
+    Good.
+    <BLANKLINE>
+
+    # 4. Input is not a string
+    >>> text_indentation(123)
+    Traceback (most recent call last):
+    ...
+    TypeError: text must be a string
+
+    # 5. Empty string
+    >>> text_indentation("")
