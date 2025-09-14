@@ -27,3 +27,4 @@ def matrix_divided(matrix, div):
     result = [[round(num / div, 2) for num in row] for row in matrix]
 
     return result
+    
