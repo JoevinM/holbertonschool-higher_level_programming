@@ -19,4 +19,4 @@ def inherits_from(obj, a_class):
         False if obj is exactly an instance of a_class,
         or if it is not related to a_class at all.
     """
-    return type(obj) is not a_class
+    return isinstance(obj, a_class) and type(obj) is not a_class
