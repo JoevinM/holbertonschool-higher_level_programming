@@ -1,0 +1,30 @@
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+>>> bg = BaseGeometry()
+
+# area() must raise an exception
+>>> bg.area()
+Traceback (most recent call last):
+Exception: area() is not implemented
+
+# integer_validator() with valid integer
+>>> bg.integer_validator("age", 10)
+
+# integer_validator() with a string
+>>> bg.integer_validator("age", "10")
+Traceback (most recent call last):
+TypeError: age must be an integer
+
+# integer_validator() with a float
+>>> bg.integer_validator("age", 3.14)
+Traceback (most recent call last):
+TypeError: age must be an integer
+
+# integer_validator() with zero
+>>> bg.integer_validator("age", 0)
+Traceback (most recent call last):
+ValueError: age must be greater than 0
+
+# integer_validator() with negative number
+>>> bg.integer_validator("age", -5)
+Traceback (most recent call last):
+ValueError: age must be greater than 0
