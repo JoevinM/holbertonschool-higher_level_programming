@@ -2,7 +2,6 @@
 """
 Defines a function inherits_from that checks if an object
 is an instance of a class that inherited (directly or indirectly)
-from a specified class.
 """
 
 
