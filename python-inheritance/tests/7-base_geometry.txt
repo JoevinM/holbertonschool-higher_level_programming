@@ -1,42 +1,81 @@
 >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
 >>> bg = BaseGeometry()
 
-# Vérifie bien que l'objet est une instance
+# Vérifie l'instance
 >>> isinstance(bg, BaseGeometry)
 True
 
-# Un test simple avec un entier valide
+# Test d'un entier valide
 >>> bg.integer_validator("width", 10)
 
-# Cas non entier (string)
+# Test avec une chaîne -> TypeError
 >>> bg.integer_validator("size", "10")
 Traceback (most recent call last):
     ...
 TypeError: size must be an integer
 
-# area() doit lever l'exception
+# Test area() -> doit lever une Exception
 >>> bg.area()
 Traceback (most recent call last):
     ...
 Exception: area() is not implemented
 
-# Cas valeur négative
+# Valeur négative -> ValueError
 >>> bg.integer_validator("height", -5)
 Traceback (most recent call last):
     ...
 ValueError: height must be greater than 0
 
-# Cas zéro
+# Valeur zéro -> ValueError
 >>> bg.integer_validator("height", 0)
 Traceback (most recent call last):
     ...
 ValueError: height must be greater than 0
 
-# Autre cas non entier (float)
+# Float -> TypeError
 >>> bg.integer_validator("size", 3.5)
 Traceback (most recent call last):
     ...
 TypeError: size must be an integer
 
-# Pour vérifier un gros entier positif
+# Grand entier positif
 >>> bg.integer_validator("length", 1000)
+
+# Appel sans arguments -> TypeError (Python 3.12 inclut le nom de la classe)
+>>> bg.integer_validator()
+Traceback (most recent call last):
+    ...
+TypeError: BaseGeometry.integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
+# Appel avec seulement le "name" -> TypeError
+>>> bg.integer_validator("age")
+Traceback (most recent call last):
+    ...
+TypeError: BaseGeometry.integer_validator() missing 1 required positional argument: 'value'
+
+# Tuple -> TypeError
+>>> bg.integer_validator("age", (4,))
+Traceback (most recent call last):
+    ...
+TypeError: age must be an integer
+
+# Liste -> TypeError
+>>> bg.integer_validator("age", [3])
+Traceback (most recent call last):
+    ...
+TypeError: age must be an integer
+
+# Booléen (True est accepté car bool hérite de int)
+>>> bg.integer_validator("age", True)
+
+# Set -> TypeError
+>>> bg.integer_validator("age", {3, 4})
+Traceback (most recent call last):
+    ...
+TypeError: age must be an integer
+
+# None -> TypeError
+>>> bg.integer_validator("age", None)
+Traceback (most recent call last):
+    ...
+TypeError: age must be an integer
