@@ -39,7 +39,7 @@ class Circle(Shape):
         """
         Initialize Circle with a radius
         """
-        self.__radius = radius
+        self.__radius = abs(radius)
 
     def area(self):
         """
