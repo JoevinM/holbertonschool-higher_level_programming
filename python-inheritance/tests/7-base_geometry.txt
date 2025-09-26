@@ -67,6 +67,9 @@ TypeError: age must be an integer
 
 # Booléen (True est accepté car bool hérite de int)
 >>> bg.integer_validator("age", True)
+Traceback (most recent call last):
+    ...
+TypeError: age must be an integer
 
 # Set -> TypeError
 >>> bg.integer_validator("age", {3, 4})
