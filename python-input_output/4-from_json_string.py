@@ -3,10 +3,10 @@
 Defines a function that returns a Python object
 from its JSON string representation.
 """
+import json
 
 
 def from_json_string(my_str):
-    import json
     """
     Convert a JSON string into the corresponding Python object.
 
