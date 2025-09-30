@@ -7,7 +7,7 @@ import json
 
 
 def load_from_json_file(filename):
-     """
+    """
     Lire un fichier JSON et le convertir en objet Python.
 
     Args:
