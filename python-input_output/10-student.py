@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """
-10-student.py
 Defines a Student class with a JSON-friendly dictionary representation
 that can be filtered by attribute names.
 """

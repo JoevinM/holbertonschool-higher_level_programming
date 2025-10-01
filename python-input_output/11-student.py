@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """
-11-student.py
 Defines a Student class with serialization and deserialization.
 """
 
