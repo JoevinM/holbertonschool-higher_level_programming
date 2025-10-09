@@ -32,7 +32,7 @@ class subclass(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header('Content-type', 'text/plain')
             self.end_headers()
-            self.wfile.write(b"Hello, this is a simple API!")
+            self.wfile.write(b"Hello, this is a simple API!”)
 
         elif self.path == '/data':
             self.send_response(200)
@@ -53,14 +53,14 @@ class subclass(BaseHTTPRequestHandler):
             self.end_headers()
             data = {"version": "1.0", "description":
                     "A simple API built with http.server"}
-            self.wfile.write(json.dumps(data).encode())
+            self.wfile.write(json.dumps(info).encode())
 
         else:
             self.send_response(404)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
-            message = {"error": "Endpoint not found"}
-            self.wfile.write(json.dumps(message).encode())
+            self.wfile.write(b"Endpoint not found")
+
 
 
 def run(server_class=HTTPServer, handler_class=subclass):
