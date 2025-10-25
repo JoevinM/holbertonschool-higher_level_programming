@@ -25,7 +25,7 @@ if __name__ == "__main__":
 
     cursor.execute(
         "SELECT id, name FROM states \
-        WHERE BINARY name = '{0}' ORDER BY id".
+        WHERE BINARY name = '{0}' ORDER BY id ASC".
         format(state_name))
 
     rows = cursor.fetchall()
