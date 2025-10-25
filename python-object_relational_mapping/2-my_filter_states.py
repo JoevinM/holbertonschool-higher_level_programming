@@ -1,36 +1,51 @@
 #!/usr/bin/python3
-"""
-Script that takes in an argument and displays all values in the states table
-of hbtn_0e_0_usa where name matches the argument.
-"""
 
+"""
+Takes a name and displays all states corresponding to the name
+"""
 import MySQLdb
-from sys import argv
+import sys
+
 
 if __name__ == "__main__":
-    user = argv[1]
-    password = argv[2]
-    db_name = argv[3]
-    state_name = argv[4]
 
-    db = MySQLdb.connect(
-        host="localhost",
-        user=user,
-        passwd=password,
-        port=3306,
-        db=db_name
-    )
+    i = 0
+    arguments = sys.argv[1:]
 
-    cursor = db.cursor()
+    if len(arguments) != 4:
+        print("Invalid number of arguments !")
+        exit()
 
-    cursor.execute(
-        "SELECT id, name FROM states \
-        WHERE BINARY name = %s ORDER BY id ASC", (state_name,))
+    try:
+        db_connection = MySQLdb.connect(
+            host="localhost",
+            user=arguments[0],
+            password=arguments[1],
+            db=arguments[2],
+            port=3306
+        )
+    except Exception as e:
+        print("Can't connect to the database :", e)
+        exit()
 
-    rows = cursor.fetchall()
+    state_name_search = arguments[3]
+    sql_query = ("SELECT id, name FROM states \
+                 WHERE BINARY name = '{0}' ORDER BY id"
+                 .format(state_name_search,))
 
-    for row in rows:
-        print(row)
+    cursor = db_connection.cursor()
+
+    try:
+        cursor.execute(
+            sql_query
+        )
+        m = cursor.fetchall()
+        for i in m:
+            print(i)
+
+    except Exception as e:
+        print("Error :", e)
+        exit()
 
     cursor.close()
-    db.close()
+    db_connection.close()
