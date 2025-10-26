@@ -1,50 +1,35 @@
 #!/usr/bin/python3
+"""
+Lists all cities from the database hbtn_0e_4_usa.
+"""
 
-"""
-Lists all cities from the database hbtn_0e_4_usa
-"""
 import MySQLdb
-import sys
-
+from sys import argv
 
 if __name__ == "__main__":
+    user = argv[1]
+    password = argv[2]
+    db_name = argv[3]
 
-    i = 0
-    arguments = sys.argv[1:]
+    db = MySQLdb.connect(
+        host="localhost",
+        user=user,
+        passwd=password,
+        port=3306,
+        db=db_name
+    )
 
-    if len(arguments) != 3:
-        print("Invalid number of arguments !")
-        exit()
+    cursor = db.cursor()
 
-    try:
-        db_connection = MySQLdb.connect(
-            host="localhost",
-            user=arguments[0],
-            password=arguments[1],
-            db=arguments[2],
-            port=3306
-        )
-    except Exception as e:
-        print("Can't connect to the database :", e)
-        exit()
+    cursor.execute(
+        "SELECT cities.id, cities.name, states.name "
+        "FROM cities JOIN states ON cities.state_id = states.id "
+        "ORDER BY cities.id ASC")
 
-    cursor = db_connection.cursor()
+    rows = cursor.fetchall()
 
-    try:
-        cursor.execute(
-            "SELECT cities.id, cities.name, states.name \
-            FROM cities \
-            INNER JOIN states \
-            ON cities.state_id = states.id \
-            ORDER BY id ASC"
-        )
-        m = cursor.fetchall()
-        for i in m:
-            print(i)
-
-    except Exception as e:
-        print("Error :", e)
-        exit()
+    for row in rows:
+        print(row)
 
     cursor.close()
-    db_connection.close()
+    db.close()
