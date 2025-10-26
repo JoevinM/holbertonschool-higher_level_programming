@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Lists all cities from the database hbtn_0e_4_usa.
+lists all states with a name starting with N
 """
 
 import MySQLdb
