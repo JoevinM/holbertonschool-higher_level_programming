@@ -4,5 +4,5 @@ const header = document.querySelector('header');
 const redHeader = document.querySelector('#red_header');
 
 redHeader.addEventListener('click', (event) => {
-  header.classList.add('red')
+  header.classList.add('red');
 });
